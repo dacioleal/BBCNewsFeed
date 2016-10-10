@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		F3F7FA251DAC033E00112625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA241DAC033E00112625 /* AppDelegate.swift */; };
-		F3F7FA271DAC033E00112625 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA261DAC033E00112625 /* ViewController.swift */; };
 		F3F7FA2A1DAC033E00112625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA281DAC033E00112625 /* Main.storyboard */; };
 		F3F7FA2C1DAC033E00112625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA2B1DAC033E00112625 /* Assets.xcassets */; };
 		F3F7FA2F1DAC033E00112625 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA2D1DAC033E00112625 /* LaunchScreen.storyboard */; };
 		F3F7FA3A1DAC033E00112625 /* BBCNewsFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA391DAC033E00112625 /* BBCNewsFeedTests.swift */; };
 		F3F7FA451DAC033E00112625 /* BBCNewsFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA441DAC033E00112625 /* BBCNewsFeedUITests.swift */; };
+		F3F7FA531DAC03FC00112625 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA521DAC03FC00112625 /* MainViewController.swift */; };
+		F3F7FA551DAC04B300112625 /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA541DAC04B300112625 /* NewsManager.swift */; };
+		F3F7FA591DAC151E00112625 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA581DAC151E00112625 /* NewsItem.swift */; };
+		F3F7FA5B1DAC15F100112625 /* NewsDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +39,6 @@
 /* Begin PBXFileReference section */
 		F3F7FA211DAC033E00112625 /* BBCNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBCNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F7FA241DAC033E00112625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F3F7FA261DAC033E00112625 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F3F7FA291DAC033E00112625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3F7FA2B1DAC033E00112625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3F7FA2E1DAC033E00112625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +49,10 @@
 		F3F7FA401DAC033E00112625 /* BBCNewsFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BBCNewsFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F7FA441DAC033E00112625 /* BBCNewsFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBCNewsFeedUITests.swift; sourceTree = "<group>"; };
 		F3F7FA461DAC033E00112625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3F7FA521DAC03FC00112625 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F3F7FA541DAC04B300112625 /* NewsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
+		F3F7FA581DAC151E00112625 /* NewsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
+		F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDownloadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,11 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				F3F7FA241DAC033E00112625 /* AppDelegate.swift */,
-				F3F7FA261DAC033E00112625 /* ViewController.swift */,
 				F3F7FA281DAC033E00112625 /* Main.storyboard */,
 				F3F7FA2B1DAC033E00112625 /* Assets.xcassets */,
 				F3F7FA2D1DAC033E00112625 /* LaunchScreen.storyboard */,
 				F3F7FA301DAC033E00112625 /* Info.plist */,
+				F3F7FA521DAC03FC00112625 /* MainViewController.swift */,
+				F3F7FA541DAC04B300112625 /* NewsManager.swift */,
+				F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */,
+				F3F7FA581DAC151E00112625 /* NewsItem.swift */,
 			);
 			path = BBCNewsFeed;
 			sourceTree = "<group>";
@@ -262,7 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3F7FA271DAC033E00112625 /* ViewController.swift in Sources */,
+				F3F7FA591DAC151E00112625 /* NewsItem.swift in Sources */,
+				F3F7FA551DAC04B300112625 /* NewsManager.swift in Sources */,
+				F3F7FA531DAC03FC00112625 /* MainViewController.swift in Sources */,
+				F3F7FA5B1DAC15F100112625 /* NewsDownloadOperation.swift in Sources */,
 				F3F7FA251DAC033E00112625 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
