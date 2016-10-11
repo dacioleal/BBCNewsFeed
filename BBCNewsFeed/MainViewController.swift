@@ -11,6 +11,31 @@ import UIKit
 class MainViewController: UIViewController {
     
     let newsManager = NewsManager.sharedManager
+    var tableView : UITableView!
+    
+    override func loadView() {
+        
+        let backView = UIView()
+        backView.backgroundColor = UIColor.red
+        
+        tableView = UITableView()
+        tableView.backgroundColor = UIColor.yellow
+        backView.addSubview(tableView)
+        
+        //Autolayout
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views : [String : UIView] = ["tableView" : tableView]
+        
+        let constraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
+        
+        backView.addConstraints(constraintsH)
+        backView.addConstraints(constraintsV)
+        
+        
+        self.view = backView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +43,6 @@ class MainViewController: UIViewController {
         let operation = NewsDownloadOperation()
         operation.itemParserDelegate = newsManager
         newsManager.operationQueue.addOperation(operation)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
