@@ -8,11 +8,10 @@
 
 import UIKit
 
-class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
+class NewsDownloadOperation: Operation, XMLParserDelegate {
     
     var item: NewsItem?
     var element: String?
-    
     var itemParserDelegate: ItemParserDelegate?
     
     override func main() {
@@ -38,14 +37,15 @@ class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
                     parser.delegate = self
                     parser.parse()
                 }
-                
             })
             
             task.resume()
         }
     }
     
-    //MARK: ParserDelegate methods
+    
+    
+//MARK: ParserDelegate methods
     
     func parser(_ parser: XMLParser, didStartElement: String, namespaceURI: String?, qualifiedName: String?, attributes: [String : String] = [:]) {
         
@@ -53,7 +53,6 @@ class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
         
         if element == "item" {
             item = NewsItem()
-            print(item)
         }
         
         if element == "media:thumbnail" {
@@ -83,7 +82,7 @@ class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
         
         if elementName == "item" {
             if let item = item {
-                didParseItem(item)
+                parsedItem(item)
             }
             item = nil
         }
@@ -95,14 +94,15 @@ class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
     }
     
     
+  
     
+
 //MARK: ItemParserDelegate method (for finished parsed items)
     
-    func didParseItem(_ item: NewsItem) {
+    func parsedItem(_ item: NewsItem) {
         
-//        if let delegate = itemParserDelegate {
-//            
-//        }
-        //print("\n\n \(item)")
+        if let delegate = itemParserDelegate {
+            delegate.didParseItem(item)
+        }
     }
 }

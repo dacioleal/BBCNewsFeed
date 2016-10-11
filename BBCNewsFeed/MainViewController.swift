@@ -12,13 +12,11 @@ class MainViewController: UIViewController {
     
     let newsManager = NewsManager.sharedManager
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         let operation = NewsDownloadOperation()
+        operation.itemParserDelegate = newsManager
         newsManager.operationQueue.addOperation(operation)
     }
 
@@ -37,5 +35,6 @@ class MainViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }

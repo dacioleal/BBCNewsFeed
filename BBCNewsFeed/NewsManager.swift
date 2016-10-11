@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewsManager {
+class NewsManager : NSObject, ItemParserDelegate {
     
     static let sharedManager = NewsManager()
     
@@ -16,5 +16,8 @@ class NewsManager {
     
     var items = [NewsItem]()
     
-    
+    func didParseItem(_ item: NewsItem) {
+        items.append(item)
+        print("\n\n \(item)")
+    }
 }
