@@ -8,7 +8,11 @@
 
 import Foundation
 
-class NewsItem {
+struct NewsItem {
     
-    
+    var title = ""
+    var pubDate = ""
+    var description = ""
+    var thumbnailAttr = [String : String]()
+    var link = ""
 }

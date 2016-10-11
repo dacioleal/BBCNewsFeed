@@ -13,4 +13,8 @@ class NewsManager {
     static let sharedManager = NewsManager()
     
     let operationQueue = OperationQueue()
+    
+    var items = [NewsItem]()
+    
+    
 }

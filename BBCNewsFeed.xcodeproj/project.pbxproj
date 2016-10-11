@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3222F081DAD59E8002A7768 /* ItemParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */; };
 		F3F7FA251DAC033E00112625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA241DAC033E00112625 /* AppDelegate.swift */; };
 		F3F7FA2A1DAC033E00112625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA281DAC033E00112625 /* Main.storyboard */; };
 		F3F7FA2C1DAC033E00112625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA2B1DAC033E00112625 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemParserDelegate.swift; sourceTree = "<group>"; };
 		F3F7FA211DAC033E00112625 /* BBCNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBCNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F7FA241DAC033E00112625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3F7FA291DAC033E00112625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				F3F7FA541DAC04B300112625 /* NewsManager.swift */,
 				F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */,
 				F3F7FA581DAC151E00112625 /* NewsItem.swift */,
+				F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */,
 			);
 			path = BBCNewsFeed;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3222F081DAD59E8002A7768 /* ItemParserDelegate.swift in Sources */,
 				F3F7FA591DAC151E00112625 /* NewsItem.swift in Sources */,
 				F3F7FA551DAC04B300112625 /* NewsManager.swift in Sources */,
 				F3F7FA531DAC03FC00112625 /* MainViewController.swift in Sources */,
@@ -526,6 +530,7 @@
 				F3F7FA4B1DAC033E00112625 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3F7FA4C1DAC033E00112625 /* Build configuration list for PBXNativeTarget "BBCNewsFeedTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +539,7 @@
 				F3F7FA4E1DAC033E00112625 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3F7FA4F1DAC033E00112625 /* Build configuration list for PBXNativeTarget "BBCNewsFeedUITests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +548,7 @@
 				F3F7FA511DAC033E00112625 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

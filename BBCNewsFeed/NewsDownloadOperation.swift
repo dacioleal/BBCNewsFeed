@@ -8,10 +8,12 @@
 
 import UIKit
 
-class NewsDownloadOperation: Operation, XMLParserDelegate {
+class NewsDownloadOperation: Operation, XMLParserDelegate, ItemParserDelegate {
     
-    var elementValue: String?
-    var success = false
+    var item: NewsItem?
+    var element: String?
+    
+    var itemParserDelegate: ItemParserDelegate?
     
     override func main() {
         
@@ -47,33 +49,60 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement: String, namespaceURI: String?, qualifiedName: String?, attributes: [String : String] = [:]) {
         
-        if didStartElement == "success" {
-            elementValue = String()
+        element = didStartElement
+        
+        if element == "item" {
+            item = NewsItem()
+            print(item)
         }
-        print(didStartElement)
+        
+        if element == "media:thumbnail" {
+            item?.thumbnailAttr = attributes
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
-        if elementValue != nil {
-            elementValue! += string
+        let trimmed = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if !trimmed.isEmpty {
+
+            
+            if element == "title" {
+                item?.title = string
+            } else if element == "pubDate" {
+                item?.pubDate = string
+            } else if element == "description" {
+                item?.description = string
+            } else if element == "link" {
+                item?.link = string
+            }
         }
-        print(string)
-        
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
-        if elementName == "success" {
-            if elementValue == "true" {
-                success = true
+        if elementName == "item" {
+            if let item = item {
+                didParseItem(item)
             }
-            elementValue = nil
+            item = nil
         }
-        print(elementName)
+        element = nil
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error occurred: \(parseError)")
+    }
+    
+    
+    
+//MARK: ItemParserDelegate method (for finished parsed items)
+    
+    func didParseItem(_ item: NewsItem) {
+        
+//        if let delegate = itemParserDelegate {
+//            
+//        }
+        //print("\n\n \(item)")
     }
 }
