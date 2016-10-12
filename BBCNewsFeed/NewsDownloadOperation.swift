@@ -39,7 +39,6 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
                     parser.parse()
                 }
             })
-            
             task.resume()
         }
     }
@@ -94,12 +93,17 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         print("Parse error occurred: \(parseError)")
     }
     
+    func parserDidStartDocument(_ parser: XMLParser) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
     func parserDidEndDocument(_ parser: XMLParser) {
         
         if let delegate = itemParserDelegate {
             delegate.didFinishParse()
-            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "finishedNewsDownloading")))
+            
         }
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
   
     

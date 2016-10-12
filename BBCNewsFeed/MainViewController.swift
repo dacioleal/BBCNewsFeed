@@ -8,11 +8,10 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDelegate, ItemParserDelegate {
     
     let newsManager = NewsManager.sharedManager
     var tableView : UITableView!
-
     
     override func loadView() {
         
@@ -34,7 +33,6 @@ class MainViewController: UIViewController, UITableViewDelegate {
         self.view = backView
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,28 +44,10 @@ class MainViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         self.tableView.tableHeaderView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
         
-        let operation = NewsDownloadOperation()
-        operation.itemParserDelegate = newsManager
-        newsManager.operationQueue.addOperation(operation)
+        let downloadOperation = NewsDownloadOperation()
+        downloadOperation.itemParserDelegate = self
+        newsManager.operationQueue.addOperation(downloadOperation)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.reload), name: Notification.Name(rawValue: "finishedNewsDownloading"), object: nil)
-    }
-    
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "finishedNewsDownloading"), object: nil)
-    }
-    
-    func reload() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
     
     
 //MARK: TableView delegate methods
@@ -81,8 +61,27 @@ class MainViewController: UIViewController, UITableViewDelegate {
         if let url = webURL {
             detailVC.loadWebPageWithUrl(url)
         }
-        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 
+
+//MARK: ItemsParserDelegate methods
+    
+    func didParseItem(_ item: NewsItem) {
+        newsManager.addItem(item)
+    }
+    
+    func didFinishParse() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
+
+
+
+
+
+
+
+

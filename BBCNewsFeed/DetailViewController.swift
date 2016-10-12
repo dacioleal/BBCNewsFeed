@@ -22,37 +22,34 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
         webView.delegate = self
         backView.addSubview(webView)
         
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        //activityIndicator.backgroundColor = UIColor.red
+        backView.addSubview(activityIndicator)
+
+        
         //Autolayout for views
         webView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         //Webview
         let views: [String : UIView] = ["webView" : webView]
         let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[webView]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
-        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-64-[webView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
         backView.addConstraints(constraintsH1)
         backView.addConstraints(constraintsV1)
         
-//        let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-[activityIndicator]-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
-//        let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-[activityIndicator]-|", options: .alignAllLeft, metrics: nil, views: views)
-//        backView.addConstraints(constraintsH2)
-//        backView.addConstraints(constraintsV2)
         
+        //ActivityIndicator
+        activityIndicator.center = backView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
         
-        
-//        //ActivityIndicator
-//        let constraintH2 = NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: backView, attribute: .centerX, multiplier: 1.0, constant: 0)
-//        let constraintV2 = NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: backView, attribute: .centerY, multiplier: 1.0, constant: 0)
-//        backView.addConstraint(constraintH2)
-//        backView.addConstraint(constraintV2)
+        let constraintH2 = NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: backView, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let constraintV2 = NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: backView, attribute: .centerY, multiplier: 1.0, constant: 0)
+        backView.addConstraint(constraintH2)
+        backView.addConstraint(constraintV2)
         
         self.view = backView
-        
-//        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-//        activityIndicator.backgroundColor = UIColor.red
-//        activityIndicator.center = self.view.center
-//        activityIndicator.hidesWhenStopped = true
-//        self.view.addSubview(activityIndicator)
-//        activityIndicator.startAnimating()
     }
     
 
@@ -65,8 +62,15 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
         let request = URLRequest(url: url)
         self.webView.loadRequest(request)
     }
+
+//MARK: WebView delegate methods
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        //activityIndicator.stopAnimating()
+        activityIndicator.stopAnimating()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }

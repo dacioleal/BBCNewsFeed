@@ -66,6 +66,7 @@ class NewsTableViewCell: UITableViewCell {
     
     func configCellWithItem(_ item: NewsItem) {
         
+        imgView.image = nil
         dateLabel.text = item.pubDate
         titleLabel.text = item.title
         descriptionLabel.text = item.description

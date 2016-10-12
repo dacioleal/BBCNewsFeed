@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsManager : NSObject, ItemParserDelegate, UITableViewDataSource  {
+class NewsManager : NSObject, UITableViewDataSource  {
     
     static let sharedManager = NewsManager()
     
@@ -17,16 +17,10 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDataSource  {
     var items = [NewsItem]()
     
 
-
-//MARK: ItemsParserDelegate methods
-
-    func didParseItem(_ item: NewsItem) {
+    func addItem(_ item:NewsItem) {
         items.append(item)
     }
     
-    func didFinishParse() {
-        //print(items)
-    }
     
 //MARK: TableViewDataSource methods
     
