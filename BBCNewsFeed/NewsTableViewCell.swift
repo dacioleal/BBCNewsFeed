@@ -10,7 +10,7 @@ import UIKit
 
 class NewsTableViewCell: UITableViewCell {
     
-    let imgView : UIImageView
+    var imgView : UIImageView
     let titleLabel : UILabel
     let dateLabel : UILabel
     let descriptionLabel : UILabel
@@ -18,9 +18,15 @@ class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
         imgView = UIImageView()
+        imgView.image = UIImage(named: "BBC_logo_640x480")
         titleLabel = UILabel()
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
+        titleLabel.numberOfLines = 0
         dateLabel = UILabel()
+        dateLabel.font = UIFont.systemFont(ofSize: UIFont.smallSystemFontSize)
         descriptionLabel = UILabel()
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14.0)
+        descriptionLabel.numberOfLines = 0
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -39,12 +45,50 @@ class NewsTableViewCell: UITableViewCell {
         let views : [String : UIView] = ["imgView":imgView, "titleLabel":titleLabel, "dateLabel":dateLabel, "descriptionLabel":descriptionLabel]
         
         
+        let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(100)]-10-[dateLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(100)]-10-[titleLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsH3 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[descriptionLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[imgView(100)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[dateLabel(20)]-5-[titleLabel(60)]", options: .alignAllLeft, metrics: nil, views: views)
 
-        
+        self.contentView.addConstraints(constraintsH1)
+        self.contentView.addConstraints(constraintsH2)
+        self.contentView.addConstraints(constraintsH3)
+        self.contentView.addConstraints(constraintsV1)
+        self.contentView.addConstraints(constraintsV2)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func configCellWithItem(_ item: NewsItem) {
+        
+        dateLabel.text = item.pubDate
+        titleLabel.text = item.title
+        descriptionLabel.text = item.description
+        imgView = UIImageView(image: UIImage(named: "BBC_logo_640x480"))
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,10 +16,8 @@ class MainViewController: UIViewController {
     override func loadView() {
         
         let backView = UIView()
-        backView.backgroundColor = UIColor.red
         
         tableView = UITableView()
-        tableView.backgroundColor = UIColor.yellow
         backView.addSubview(tableView)
         
         //Autolayout
@@ -32,10 +30,9 @@ class MainViewController: UIViewController {
         
         backView.addConstraints(constraintsH)
         backView.addConstraints(constraintsV)
-        
-        
         self.view = backView
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +40,18 @@ class MainViewController: UIViewController {
         let operation = NewsDownloadOperation()
         operation.itemParserDelegate = newsManager
         newsManager.operationQueue.addOperation(operation)
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
+        tableView.register(NewsTableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "NewsCell")
+        
+        tableView.dataSource = newsManager
+        tableView.delegate = newsManager
+        self.perform(#selector(MainViewController.reload), with: nil, afterDelay: 2.0)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func reload() {
+        tableView.reloadData()
     }
-    */
-    
 
 }

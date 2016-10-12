@@ -93,7 +93,12 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         print("Parse error occurred: \(parseError)")
     }
     
-    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        
+        if let delegate = itemParserDelegate {
+            delegate.didFinishParse()
+        }
+    }
   
     
 

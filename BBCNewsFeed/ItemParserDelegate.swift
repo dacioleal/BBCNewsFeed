@@ -11,4 +11,6 @@ import Foundation
 protocol ItemParserDelegate {
     
     func didParseItem(_ item: NewsItem)
+    
+    func didFinishParse()
 }

@@ -14,11 +14,17 @@ class NewsDataProvider: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 1
+        return newsManager.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsTableViewCell
+        let item = newsManager.items[indexPath.row]
+//        let item = NewsItem(title: "Title", pubDate: "22/10/2016", description: "Description goes here and dhsjadhsakjhdsjdhsajkhdsajkhdkasjhdaksjhdjsahdkjsahdkjhsakjdhkjsahdksahdkjsah", thumbnailAttr: ["hello":"world"], link: "http://")
+        cell.configCellWithItem(item)
+        
+        return cell
     }
     
     
