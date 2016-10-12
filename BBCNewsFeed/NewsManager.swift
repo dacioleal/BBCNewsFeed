@@ -40,7 +40,6 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDelegate, UITableVi
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell", for: indexPath) as! NewsTableViewCell
         let item = items[indexPath.row]
-        //        let item = NewsItem(title: "Title", pubDate: "22/10/2016", description: "Description goes here and dhsjadhsakjhdsjdhsajkhdsajkhdkasjhdaksjhdjsahdkjsahdkjhsakjdhkjsahdksahdkjsah", thumbnailAttr: ["hello":"world"], link: "http://")
         cell.configCellWithItem(item)
         
         return cell

@@ -10,6 +10,7 @@
 		F3222F081DAD59E8002A7768 /* ItemParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */; };
 		F32C46DD1DAE082C006A31DA /* BBC_logo_640x480.png in Resources */ = {isa = PBXBuildFile; fileRef = F32C46DC1DAE082C006A31DA /* BBC_logo_640x480.png */; };
 		F3A944881DAD9237003B1CBB /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A944871DAD9237003B1CBB /* NewsTableViewCell.swift */; };
+		F3BF5FE71DAE3B430072F446 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BF5FE61DAE3B430072F446 /* DetailViewController.swift */; };
 		F3F7FA251DAC033E00112625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F7FA241DAC033E00112625 /* AppDelegate.swift */; };
 		F3F7FA2A1DAC033E00112625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA281DAC033E00112625 /* Main.storyboard */; };
 		F3F7FA2C1DAC033E00112625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3F7FA2B1DAC033E00112625 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemParserDelegate.swift; sourceTree = "<group>"; };
 		F32C46DC1DAE082C006A31DA /* BBC_logo_640x480.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BBC_logo_640x480.png; sourceTree = "<group>"; };
 		F3A944871DAD9237003B1CBB /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		F3BF5FE61DAE3B430072F446 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		F3F7FA211DAC033E00112625 /* BBCNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBCNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3F7FA241DAC033E00112625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3F7FA291DAC033E00112625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,6 +88,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3BF5FE81DAE3B4D0072F446 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F3F7FA521DAC03FC00112625 /* MainViewController.swift */,
+				F3BF5FE61DAE3B430072F446 /* DetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F3BF5FE91DAE3B6E0072F446 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3F7FA541DAC04B300112625 /* NewsManager.swift */,
+				F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */,
+				F3F7FA581DAC151E00112625 /* NewsItem.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		F3BF5FEA1DAE3B870072F446 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3A944871DAD9237003B1CBB /* NewsTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F3BF5FEB1DAE3BBA0072F446 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		F3BF5FEC1DAE3C0C0072F446 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F32C46DC1DAE082C006A31DA /* BBC_logo_640x480.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		F3F7FA181DAC033D00112625 = {
 			isa = PBXGroup;
 			children = (
@@ -114,13 +159,11 @@
 				F3F7FA2B1DAC033E00112625 /* Assets.xcassets */,
 				F3F7FA2D1DAC033E00112625 /* LaunchScreen.storyboard */,
 				F3F7FA301DAC033E00112625 /* Info.plist */,
-				F3F7FA521DAC03FC00112625 /* MainViewController.swift */,
-				F3F7FA541DAC04B300112625 /* NewsManager.swift */,
-				F3F7FA5A1DAC15F100112625 /* NewsDownloadOperation.swift */,
-				F3F7FA581DAC151E00112625 /* NewsItem.swift */,
-				F3222F071DAD59E8002A7768 /* ItemParserDelegate.swift */,
-				F3A944871DAD9237003B1CBB /* NewsTableViewCell.swift */,
-				F32C46DC1DAE082C006A31DA /* BBC_logo_640x480.png */,
+				F3BF5FE81DAE3B4D0072F446 /* Controllers */,
+				F3BF5FE91DAE3B6E0072F446 /* Model */,
+				F3BF5FEB1DAE3BBA0072F446 /* Delegates */,
+				F3BF5FEA1DAE3B870072F446 /* Views */,
+				F3BF5FEC1DAE3C0C0072F446 /* Resources */,
 			);
 			path = BBCNewsFeed;
 			sourceTree = "<group>";
@@ -288,6 +331,7 @@
 				F3F7FA531DAC03FC00112625 /* MainViewController.swift in Sources */,
 				F3F7FA5B1DAC15F100112625 /* NewsDownloadOperation.swift in Sources */,
 				F3F7FA251DAC033E00112625 /* AppDelegate.swift in Sources */,
+				F3BF5FE71DAE3B430072F446 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

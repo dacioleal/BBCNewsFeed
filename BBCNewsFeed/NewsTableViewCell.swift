@@ -27,6 +27,7 @@ class NewsTableViewCell: UITableViewCell {
         descriptionLabel = UILabel()
         descriptionLabel.font = UIFont.systemFont(ofSize: 14.0)
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.textColor = UIColor.gray
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -48,7 +49,7 @@ class NewsTableViewCell: UITableViewCell {
         let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(120)]-10-[dateLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(120)]-10-[titleLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsH3 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[descriptionLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
-        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[imgView(80)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[imgView(80)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
         let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[dateLabel(20)]-5-[titleLabel(60)]", options: .alignAllLeft, metrics: nil, views: views)
 
         self.contentView.addConstraints(constraintsH1)
