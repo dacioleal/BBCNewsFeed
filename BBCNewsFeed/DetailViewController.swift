@@ -9,27 +9,42 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    
+    var webView: UIWebView = UIWebView()
+    
+    override func loadView() {
+        
+        let backView = UIView()
+        
+        webView.sizeToFit()
+        backView.addSubview(webView)
+        
+        //Autolayout
+        
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views: [String : UIView] = ["webView" : webView]
+        
+        let constraintsH = NSLayoutConstraint.constraints(withVisualFormat: "|-0-[webView]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[webView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
+        backView.addConstraints(constraintsH)
+        backView.addConstraints(constraintsV)
+        
+        self.view = backView
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    func loadWebPageWithUrl(_ url: URL) {
+        
+        let request = URLRequest(url: url)
+        self.webView.loadRequest(request)
     }
-    */
-
 }

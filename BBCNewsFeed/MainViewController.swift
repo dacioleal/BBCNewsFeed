@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDelegate {
     
     let newsManager = NewsManager.sharedManager
     var tableView : UITableView!
@@ -25,7 +25,7 @@ class MainViewController: UIViewController {
         
         let views : [String : UIView] = ["tableView" : tableView]
         
-        let constraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: .alignAllLeft, metrics: nil, views: views)
         
         backView.addConstraints(constraintsH)
@@ -46,12 +46,24 @@ class MainViewController: UIViewController {
         tableView.register(NewsTableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "NewsCell")
         
         tableView.dataSource = newsManager
-        tableView.delegate = newsManager
+        tableView.delegate = self
         self.perform(#selector(MainViewController.reload), with: nil, afterDelay: 2.0)
     }
     
     func reload() {
         tableView.reloadData()
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = newsManager.items[indexPath.row]
+        let detailVC = DetailViewController()
+        let webURL = URL(string: item.link)
+        
+        if let url = webURL {
+            detailVC.loadWebPageWithUrl(url)
+        }
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
 }

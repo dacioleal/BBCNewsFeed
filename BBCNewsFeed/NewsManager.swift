@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsManager : NSObject, ItemParserDelegate, UITableViewDelegate, UITableViewDataSource  {
+class NewsManager : NSObject, ItemParserDelegate, UITableViewDataSource  {
     
     static let sharedManager = NewsManager()
     
@@ -22,11 +22,11 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDelegate, UITableVi
 
     func didParseItem(_ item: NewsItem) {
         items.append(item)
-        print("\n\n \(item)")
     }
     
     func didFinishParse() {
-        print("Finished")
+        
+
     }
     
 //MARK: TableViewDataSource methods
@@ -44,4 +44,5 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDelegate, UITableVi
         
         return cell
     }
+    
 }
