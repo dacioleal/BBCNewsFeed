@@ -25,7 +25,7 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDataSource  {
     }
     
     func didFinishParse() {
-        
+        //print(items)
 
     }
     

@@ -35,6 +35,7 @@ class NewsTableViewCell: UITableViewCell {
         self.contentView.addSubview(titleLabel)
         self.contentView.addSubview(dateLabel)
         self.contentView.addSubview(descriptionLabel)
+        self.selectionStyle = .none
         
         //Autolayout
         
@@ -50,7 +51,7 @@ class NewsTableViewCell: UITableViewCell {
         let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(120)]-10-[titleLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsH3 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[descriptionLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[imgView(80)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
-        let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[dateLabel(20)]-5-[titleLabel(60)]", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[dateLabel(15)]-0-[titleLabel(60)]", options: .alignAllLeft, metrics: nil, views: views)
 
         self.contentView.addConstraints(constraintsH1)
         self.contentView.addConstraints(constraintsH2)
