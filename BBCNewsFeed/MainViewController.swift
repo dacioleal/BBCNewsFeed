@@ -12,6 +12,7 @@ class MainViewController: UIViewController, UITableViewDelegate, ItemParserDeleg
     
     let newsManager = NewsManager.sharedManager
     var tableView : UITableView!
+    var refreshControl : UIRefreshControl!
     
     override func loadView() {
         
@@ -46,9 +47,24 @@ class MainViewController: UIViewController, UITableViewDelegate, ItemParserDeleg
         let headerView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
         self.tableView.tableHeaderView = headerView
         
+        setUpDownloadOperation()
+        
+        refreshControl = UIRefreshControl()
+        //refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(MainViewController.refreshAction), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func setUpDownloadOperation() {
+        
         let downloadOperation = NewsDownloadOperation()
         downloadOperation.itemParserDelegate = self
         newsManager.operationQueue.addOperation(downloadOperation)
+    }
+    
+    func refreshAction() {
+        
+        setUpDownloadOperation()
     }
     
     
@@ -75,6 +91,7 @@ class MainViewController: UIViewController, UITableViewDelegate, ItemParserDeleg
     
     func didFinishParse() {
         DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
             self.tableView.reloadData()
         }
     }
