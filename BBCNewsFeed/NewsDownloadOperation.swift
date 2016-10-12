@@ -18,6 +18,7 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         
         let urlPathString = "http://feeds.bbci.co.uk/news/world/rss.xml"
         let url = URL(string: urlPathString)
+        self.name = "NewsDownloadOperation"
         
         if let url = url {
             
@@ -97,6 +98,7 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         
         if let delegate = itemParserDelegate {
             delegate.didFinishParse()
+            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "finishedNewsDownloading")))
         }
     }
   

@@ -55,13 +55,9 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
 //        activityIndicator.startAnimating()
     }
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
     }
     
     func loadWebPageWithUrl(_ url: URL) {

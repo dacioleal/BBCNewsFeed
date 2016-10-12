@@ -26,7 +26,6 @@ class NewsManager : NSObject, ItemParserDelegate, UITableViewDataSource  {
     
     func didFinishParse() {
         //print(items)
-
     }
     
 //MARK: TableViewDataSource methods

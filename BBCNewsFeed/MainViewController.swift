@@ -12,6 +12,7 @@ class MainViewController: UIViewController, UITableViewDelegate {
     
     let newsManager = NewsManager.sharedManager
     var tableView : UITableView!
+
     
     override func loadView() {
         
@@ -38,25 +39,38 @@ class MainViewController: UIViewController, UITableViewDelegate {
         super.viewDidLoad()
         
         self.title = "BBC News"
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
+        tableView.register(NewsTableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "NewsCell")
+        tableView.dataSource = newsManager
+        tableView.delegate = self
+        self.tableView.tableHeaderView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
         
         let operation = NewsDownloadOperation()
         operation.itemParserDelegate = newsManager
         newsManager.operationQueue.addOperation(operation)
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100.0
-        tableView.register(NewsTableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "NewsCell")
-        
-        tableView.dataSource = newsManager
-        tableView.delegate = self
-        self.perform(#selector(MainViewController.reload), with: nil, afterDelay: 2.0)
-        
-        self.tableView.tableHeaderView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.reload), name: Notification.Name(rawValue: "finishedNewsDownloading"), object: nil)
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "finishedNewsDownloading"), object: nil)
     }
     
     func reload() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
+    
+    
+    
+//MARK: TableView delegate methods
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -70,4 +84,5 @@ class MainViewController: UIViewController, UITableViewDelegate {
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
+
 }
