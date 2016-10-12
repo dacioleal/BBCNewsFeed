@@ -18,7 +18,7 @@ class NewsTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
         imgView = UIImageView()
-        imgView.image = UIImage(named: "BBC_logo_640x480")
+        imgView.contentMode = UIViewContentMode.scaleAspectFit
         titleLabel = UILabel()
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         titleLabel.numberOfLines = 0
@@ -45,10 +45,10 @@ class NewsTableViewCell: UITableViewCell {
         let views : [String : UIView] = ["imgView":imgView, "titleLabel":titleLabel, "dateLabel":dateLabel, "descriptionLabel":descriptionLabel]
         
         
-        let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(100)]-10-[dateLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
-        let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(100)]-10-[titleLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(120)]-10-[dateLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsH2 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[imgView(120)]-10-[titleLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsH3 = NSLayoutConstraint.constraints(withVisualFormat: "|-10-[descriptionLabel]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
-        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[imgView(100)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
+        let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[imgView(80)]-5-[descriptionLabel]-5-|", options: .alignAllLeft, metrics: nil, views: views)
         let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[dateLabel(20)]-5-[titleLabel(60)]", options: .alignAllLeft, metrics: nil, views: views)
 
         self.contentView.addConstraints(constraintsH1)
@@ -67,7 +67,21 @@ class NewsTableViewCell: UITableViewCell {
         dateLabel.text = item.pubDate
         titleLabel.text = item.title
         descriptionLabel.text = item.description
-        imgView = UIImageView(image: UIImage(named: "BBC_logo_640x480"))
+        
+        let urlString = item.thumbnailAttr["url"]
+        let imgURL = URL(string: urlString!)
+        
+        DispatchQueue.global().async {
+            
+            let imageData = try? Data(contentsOf: imgURL!)
+            
+            DispatchQueue.main.async {
+                
+                if let data = imageData {
+                    self.imgView.image = UIImage(data: data)
+                }
+            }
+        }
     }
 
 }
