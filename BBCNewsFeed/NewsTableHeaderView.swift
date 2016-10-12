@@ -20,6 +20,8 @@ class NewsTableHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         searchBar = UISearchBar()
         searchBar.barTintColor = UIColor.lightGray
+        searchBar.isUserInteractionEnabled = false;
+        
 
         searchButton = UIButton()
         searchButton.setImage(UIImage(named: "Search_icon_50x50"), for: .normal)
@@ -38,7 +40,7 @@ class NewsTableHeaderView: UIView {
         
         let views: [String : UIView] = ["imageView":imageView, "searchBar":searchBar, "searchButton":searchButton]
         
-        let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-15-[imageView(40)]-10-[searchBar]-10-[searchButton(30)]-10-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
+        let constraintsH1 = NSLayoutConstraint.constraints(withVisualFormat: "|-15-[imageView(40)]-10-[searchBar]-10-[searchButton(30)]-5-|", options: .directionLeadingToTrailing, metrics: nil, views: views)
         let constraintsV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[imageView(40)]", options: .alignAllLeft, metrics: nil, views: views)
         let constraintsV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[searchBar(40)]", options: .alignAllLeft, metrics: nil, views: views)
         let constraintsV3 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[searchButton(30)]", options: .alignAllLeft, metrics: nil, views: views)

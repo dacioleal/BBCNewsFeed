@@ -42,7 +42,9 @@ class MainViewController: UIViewController, UITableViewDelegate, ItemParserDeleg
         tableView.register(NewsTableViewCell.classForKeyedArchiver(), forCellReuseIdentifier: "NewsCell")
         tableView.dataSource = newsManager
         tableView.delegate = self
-        self.tableView.tableHeaderView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
+        
+        let headerView = NewsTableHeaderView(frame: CGRect(origin: CGPoint.init(x: 0, y: 0), size: CGSize(width: tableView.frame.width, height: 50.0)))
+        self.tableView.tableHeaderView = headerView
         
         let downloadOperation = NewsDownloadOperation()
         downloadOperation.itemParserDelegate = self

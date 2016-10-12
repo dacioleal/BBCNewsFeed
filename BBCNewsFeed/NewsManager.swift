@@ -11,9 +11,7 @@ import UIKit
 class NewsManager : NSObject, UITableViewDataSource  {
     
     static let sharedManager = NewsManager()
-    
     let operationQueue = OperationQueue()
-    
     var items = [NewsItem]()
     
 
@@ -37,5 +35,4 @@ class NewsManager : NSObject, UITableViewDataSource  {
         
         return cell
     }
-    
 }
