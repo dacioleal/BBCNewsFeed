@@ -64,7 +64,6 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         
         let trimmed = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if !trimmed.isEmpty {
-
             
             if element == "title" {
                 item?.title = string
@@ -80,11 +79,9 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
-        if elementName == "item" {
-            if let item = item {
-                parsedItem(item)
-            }
-            item = nil
+        if elementName == "item", let item = item {
+            parsedItem(item)
+            self.item = nil
         }
         element = nil
     }
