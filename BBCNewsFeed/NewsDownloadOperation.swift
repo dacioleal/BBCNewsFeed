@@ -35,7 +35,6 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
             }
             
             if let data = data {
-                
                 let parser = XMLParser(data: data)
                 parser.delegate = self
                 parser.parse()
@@ -61,6 +60,8 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         }
     }
     
+    
+    
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
         let trimmed = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -82,6 +83,8 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         }
     }
     
+    
+    
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if elementName == "item", let item = item {
@@ -91,13 +94,19 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         element = nil
     }
     
+    
+    
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         print("Parse error occurred: \(parseError)")
     }
     
+    
+    
     func parserDidStartDocument(_ parser: XMLParser) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
+    
+    
     
     func parserDidEndDocument(_ parser: XMLParser) {
         
@@ -107,6 +116,8 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
         }
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
+    
+    
   
     
 
