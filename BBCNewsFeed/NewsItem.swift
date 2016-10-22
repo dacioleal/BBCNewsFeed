@@ -15,4 +15,5 @@ struct NewsItem {
     var description = ""
     var thumbnailAttr = [String : String]()
     var link = ""
+    
 }

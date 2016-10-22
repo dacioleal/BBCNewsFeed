@@ -16,31 +16,32 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
     
     override func main() {
         
-        let urlPathString = "http://feeds.bbci.co.uk/news/world/rss.xml"
-        let url = URL(string: urlPathString)
+        let servicePathString = "http://feeds.bbci.co.uk/news/world/rss.xml"
+        let serviceURL = URL(string: servicePathString)
         self.name = "NewsDownloadOperation"
         
-        if let url = url {
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            
-            let task:URLSessionDataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                
-                if error != nil {
-                    print("Error: \(error.debugDescription)")
-                    return
-                }
-                
-                if let data = data {
-                    
-                    let parser = XMLParser(data: data)
-                    parser.delegate = self
-                    parser.parse()
-                }
-            })
-            task.resume()
+        guard let url = serviceURL  else {
+            return
         }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let task:URLSessionDataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if error != nil {
+                print("Error: \(error.debugDescription)")
+                return
+            }
+            
+            if let data = data {
+                
+                let parser = XMLParser(data: data)
+                parser.delegate = self
+                parser.parse()
+            }
+        })
+        task.resume()
     }
     
     
@@ -63,17 +64,21 @@ class NewsDownloadOperation: Operation, XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         
         let trimmed = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        if !trimmed.isEmpty {
-            
-            if element == "title" {
-                item?.title = string
-            } else if element == "pubDate" {
-                item?.pubDate = string
-            } else if element == "description" {
-                item?.description = string
-            } else if element == "link" {
-                item?.link = string
-            }
+        
+        if element == "title", !trimmed.isEmpty {
+            item?.title = string
+        }
+        
+        if element == "pubDate", !trimmed.isEmpty {
+            item?.pubDate = string
+        }
+        
+        if element == "description", !trimmed.isEmpty {
+            item?.description = string
+        }
+        
+        if element == "link", !trimmed.isEmpty {
+            item?.link = string
         }
     }
     
